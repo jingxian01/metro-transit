@@ -1,56 +1,44 @@
-import {
-  Link as ChakraLink,
-  Text,
-  Code,
-  List,
-  ListIcon,
-  ListItem,
-} from '@chakra-ui/react'
-import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
+import { Box } from "@chakra-ui/react";
+import axios from "axios";
+import { Layout } from "../components/Layout";
+import { Route } from "../utils/types";
+import { NextPage } from "next";
+import { RouteData } from "../components/RouteData";
 
-import { Hero } from '../components/Hero'
-import { Container } from '../components/Container'
-import { Main } from '../components/Main'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { CTA } from '../components/CTA'
-import { Footer } from '../components/Footer'
+interface IndexProps {
+  routes: Array<Route>;
+}
 
-const Index = () => (
-  <Container height="100vh">
-    <Hero />
-    <Main>
-      <Text>
-        Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code> +{' '}
-        <Code>TypeScript</Code>.
-      </Text>
+interface IndexProps {}
 
-      <List spacing={3} my={0}>
-        <ListItem>
-          <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink
-            isExternal
-            href="https://chakra-ui.com"
-            flexGrow={1}
-            mr={2}
-          >
-            Chakra UI <LinkIcon />
-          </ChakraLink>
-        </ListItem>
-        <ListItem>
-          <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink isExternal href="https://nextjs.org" flexGrow={1} mr={2}>
-            Next.js <LinkIcon />
-          </ChakraLink>
-        </ListItem>
-      </List>
-    </Main>
+const Index: NextPage<IndexProps> = ({ routes }) => {
+  return (
+    <Layout>
+      <Box textAlign="center" p={4}>
+        metro transit real time schedule
+      </Box>
+      {/* {routes.map((r) => {
+        return (
+          <RouteData
+            key={r.route_id}
+            route_id={r.route_id}
+            route_label={r.route_label}
+            agency_id={r.agency_id}
+          />
+        );
+      })} */}
+    </Layout>
+  );
+};
 
-    <DarkModeSwitch />
-    <Footer>
-      <Text>Next ❤️ Chakra</Text>
-    </Footer>
-    <CTA />
-  </Container>
-)
+export async function getServerSideProps() {
+  const res = await axios.get<Array<Route>>("https://svc.metrotransit.org/nextripv2/routes");
 
-export default Index
+  return {
+    props: {
+      routes: res.data,
+    },
+  };
+}
+
+export default Index;
