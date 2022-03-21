@@ -12,7 +12,7 @@ export const Navbar: NextPage<NavbarProps> = ({}) => {
       <Name />
       <HStack>
         <ThemeToggleButton />
-        <Link href="https://github.com/" target="_blank">
+        <Link href="https://github.com/jingxian01/metro-transit" target="_blank">
           <IconButton aria-label="github" icon={<FaGithub />} />
         </Link>
       </HStack>
