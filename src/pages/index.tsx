@@ -1,4 +1,4 @@
-import { Box, Select } from "@chakra-ui/react";
+import { Select } from "@chakra-ui/react";
 import axios from "axios";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
