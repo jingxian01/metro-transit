@@ -11,7 +11,7 @@ export const Layout: NextPage<LayoutProps> = ({ children }) => {
       alignItems="center"
       justifyContent="flex-start"
       minH="100vh"
-      maxW="container.md"
+      maxW="container.sm"
     >
       <Navbar />
       {children}

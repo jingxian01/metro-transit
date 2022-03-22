@@ -29,5 +29,3 @@ export const theme = extendTheme({
   config,
   styles,
 });
-
-export default theme;

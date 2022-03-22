@@ -1,4 +1,4 @@
-import { Select } from "@chakra-ui/react";
+import { Button, Select, useColorMode, useColorModeValue, VStack } from "@chakra-ui/react";
 import axios from "axios";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
@@ -17,6 +17,8 @@ const Index: NextPage<IndexProps> = ({ routes }) => {
   const [selectedDirection, setSelectedDirection] = useState<number | null>();
   const [places, setPlaces] = useState<Array<Place>>();
   const [selectedPlace, setSelectedPlace] = useState<number>();
+
+  const { colorMode } = useColorMode();
 
   useEffect(() => {
     if (selectedRoute) {
@@ -46,65 +48,76 @@ const Index: NextPage<IndexProps> = ({ routes }) => {
   // console.log(routes);
   return (
     <Layout>
-      <Select
-        placeholder="Select a route"
-        onChange={(e) => {
-          e.preventDefault();
-          setSelectedRoute(parseInt(e.target.value));
-          setDirections(null);
-          setSelectedDirection(null);
-          setPlaces(null);
-        }}
-      >
-        {routes.map((r) => {
-          return (
-            <option key={r.route_id} value={r.route_id}>
-              {r.route_label}
-            </option>
-          );
-        })}
-      </Select>
-      {directions ? (
+      <VStack>
         <Select
-          placeholder="Select a direction"
+          variant="filled"
+          bg={colorMode == "light" ? "#eef2f6" : "#141414"}
+          _hover={{ bg: colorMode == "light" ? "#e3e8ef" : "#292929" }}
+          placeholder="Select a route"
+          defaultValue="12"
           onChange={(e) => {
             e.preventDefault();
-            setSelectedDirection(parseInt(e.target.value));
+            setSelectedRoute(e.target.value ? parseInt(e.target.value) : null);
+            setDirections(null);
+            setSelectedDirection(null);
             setPlaces(null);
-            setSelectedPlace(null);
           }}
         >
-          {directions.map((dir) => {
+          {routes.map((r) => {
             return (
-              <option key={dir.direction_id} value={dir.direction_id}>
-                {dir.direction_name}
+              <option key={r.route_id} value={r.route_id}>
+                {r.route_label}
               </option>
             );
           })}
         </Select>
-      ) : (
-        <></>
-      )}
-      {places ? (
-        <Select
-          placeholder="Select a stop"
-          onChange={(e) => {
-            e.preventDefault();
-            console.log(e.target.value);
-            setSelectedPlace(parseInt(e.target.value));
-          }}
-        >
-          {places.map((p) => {
-            return (
-              <option key={p.place_code} value={p.place_code}>
-                {p.description}
-              </option>
-            );
-          })}
-        </Select>
-      ) : (
-        <></>
-      )}
+        {directions ? (
+          <Select
+            variant="filled"
+            bg={colorMode == "light" ? "#eef2f6" : "#141414"}
+            _hover={{ bg: colorMode == "light" ? "#e3e8ef" : "#292929" }}
+            placeholder="Select a direction"
+            onChange={(e) => {
+              e.preventDefault();
+              setSelectedDirection(e.target.value ? parseInt(e.target.value) : null);
+              setPlaces(null);
+              setSelectedPlace(null);
+            }}
+          >
+            {directions.map((dir) => {
+              return (
+                <option key={dir.direction_id} value={dir.direction_id}>
+                  {dir.direction_name}
+                </option>
+              );
+            })}
+          </Select>
+        ) : (
+          <></>
+        )}
+        {places ? (
+          <Select
+            variant="filled"
+            bg={colorMode == "light" ? "#eef2f6" : "#141414"}
+            _hover={{ bg: colorMode == "light" ? "#e3e8ef" : "#292929" }}
+            placeholder="Select a stop"
+            onChange={(e) => {
+              e.preventDefault();
+              setSelectedPlace(e.target.value ? parseInt(e.target.value) : null);
+            }}
+          >
+            {places.map((p) => {
+              return (
+                <option key={p.place_code} value={p.place_code}>
+                  {p.description}
+                </option>
+              );
+            })}
+          </Select>
+        ) : (
+          <></>
+        )}
+      </VStack>
     </Layout>
   );
 };
