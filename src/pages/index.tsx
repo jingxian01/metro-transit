@@ -1,4 +1,5 @@
-import { Box, Select, Text, useColorMode, VStack } from "@chakra-ui/react";
+import { Search2Icon } from "@chakra-ui/icons";
+import { Box, Button, Select, Spacer, Text, useColorMode, VStack } from "@chakra-ui/react";
 import axios from "axios";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
@@ -16,7 +17,7 @@ const Index: NextPage<IndexProps> = ({ routes }) => {
   const [directions, setDirections] = useState<Array<Direction>>();
   const [selectedDirection, setSelectedDirection] = useState<number | null>();
   const [places, setPlaces] = useState<Array<Place>>();
-  const [selectedPlace, setSelectedPlace] = useState<number>();
+  const [selectedPlace, setSelectedPlace] = useState<string>("");
 
   const { colorMode } = useColorMode();
 
@@ -45,74 +46,105 @@ const Index: NextPage<IndexProps> = ({ routes }) => {
     }
   }, [selectedDirection]);
 
+  const handleSubmit = async () => {
+    const res = await axios.get(
+      `https://svc.metrotransit.org/nextripv2/${selectedRoute}/${selectedDirection}/${selectedPlace}`
+    );
+    console.log(res.data);
+  };
+
   return (
     <Layout>
       <VStack mt={6} spacing={4}>
-        <Select
-          variant="filled"
-          bg={colorMode == "light" ? "#eef2f6" : "#141414"}
-          _hover={{ bg: colorMode == "light" ? "#e3e8ef" : "#292929" }}
-          placeholder="Select a route"
-          defaultValue="12"
-          onChange={(e) => {
-            e.preventDefault();
-            setSelectedRoute(e.target.value ? parseInt(e.target.value) : null);
-            setDirections(null);
-            setSelectedDirection(null);
-            setPlaces(null);
-          }}
-        >
-          {routes.map((r) => {
-            return (
-              <option key={r.route_id} value={r.route_id}>
-                {r.route_label}
-              </option>
-            );
-          })}
-        </Select>
-        {directions ? (
+        <Box w="100%">
+          <Text px={2} fontWeight="semibold">
+            Route
+          </Text>
           <Select
             variant="filled"
             bg={colorMode == "light" ? "#eef2f6" : "#141414"}
             _hover={{ bg: colorMode == "light" ? "#e3e8ef" : "#292929" }}
-            placeholder="Select a direction"
+            placeholder="select a route"
+            defaultValue="12"
             onChange={(e) => {
               e.preventDefault();
-              setSelectedDirection(e.target.value ? parseInt(e.target.value) : null);
+              setSelectedRoute(e.target.value ? parseInt(e.target.value) : null);
+              setDirections(null);
+              setSelectedDirection(null);
               setPlaces(null);
-              setSelectedPlace(null);
             }}
           >
-            {directions.map((dir) => {
+            {routes.map((r) => {
               return (
-                <option key={dir.direction_id} value={dir.direction_id}>
-                  {dir.direction_name}
+                <option key={r.route_id} value={r.route_id}>
+                  {r.route_label}
                 </option>
               );
             })}
           </Select>
+        </Box>
+        {directions ? (
+          <Box w="100%">
+            <Text px={2} fontWeight="semibold">
+              Direction
+            </Text>
+            <Select
+              variant="filled"
+              bg={colorMode == "light" ? "#eef2f6" : "#141414"}
+              _hover={{ bg: colorMode == "light" ? "#e3e8ef" : "#292929" }}
+              placeholder="select a direction"
+              onChange={(e) => {
+                e.preventDefault();
+                setSelectedDirection(e.target.value ? parseInt(e.target.value) : null);
+                setPlaces(null);
+                setSelectedPlace("");
+              }}
+            >
+              {directions.map((dir) => {
+                return (
+                  <option key={dir.direction_id} value={dir.direction_id}>
+                    {dir.direction_name}
+                  </option>
+                );
+              })}
+            </Select>
+          </Box>
         ) : (
           <></>
         )}
         {places ? (
-          <Select
-            variant="filled"
-            bg={colorMode == "light" ? "#eef2f6" : "#141414"}
-            _hover={{ bg: colorMode == "light" ? "#e3e8ef" : "#292929" }}
-            placeholder="Select a stop"
-            onChange={(e) => {
-              e.preventDefault();
-              setSelectedPlace(e.target.value ? parseInt(e.target.value) : null);
-            }}
-          >
-            {places.map((p) => {
-              return (
-                <option key={p.place_code} value={p.place_code}>
-                  {p.description}
-                </option>
-              );
-            })}
-          </Select>
+          <Box w="100%">
+            <Text px={2} fontWeight="semibold">
+              Stop
+            </Text>
+            <Select
+              variant="filled"
+              bg={colorMode == "light" ? "#eef2f6" : "#141414"}
+              _hover={{ bg: colorMode == "light" ? "#e3e8ef" : "#292929" }}
+              placeholder="select a stop"
+              onChange={(e) => {
+                e.preventDefault();
+                setSelectedPlace(e.target.value ? e.target.value : "");
+              }}
+            >
+              {places.map((p) => {
+                return (
+                  <option key={p.place_code} value={p.place_code}>
+                    {p.description}
+                  </option>
+                );
+              })}
+            </Select>
+          </Box>
+        ) : (
+          <></>
+        )}
+        <Spacer />
+        <Spacer />
+        {selectedRoute && selectedDirection != null && selectedPlace ? (
+          <Button leftIcon={<Search2Icon />} onClick={handleSubmit}>
+            search
+          </Button>
         ) : (
           <></>
         )}
