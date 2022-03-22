@@ -53,7 +53,7 @@ const Index: NextPage<IndexProps> = ({ routes }) => {
     //   `https://svc.metrotransit.org/nextripv2/${selectedRoute}/${selectedDirection}/${selectedPlace}`
     // );
     // console.log(res.data);
-    router.push(`/schedule/${selectedRoute}-${selectedDirection}-${selectedPlace}`);
+    // router.push(`/schedule/${selectedRoute}-${selectedDirection}-${selectedPlace}`);
   };
 
   return (
