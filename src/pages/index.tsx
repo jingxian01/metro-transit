@@ -54,6 +54,7 @@ const Index: NextPage<IndexProps> = ({ routes }) => {
     // );
     // console.log(res.data);
     // router.push(`/schedule/${selectedRoute}-${selectedDirection}-${selectedPlace}`);
+    //
   };
 
   return (
