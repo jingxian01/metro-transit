@@ -2,6 +2,7 @@ import { Search2Icon } from "@chakra-ui/icons";
 import { Box, Button, Select, Spacer, Text, useColorMode, VStack } from "@chakra-ui/react";
 import axios from "axios";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Layout } from "../components/layouts/Layout";
 import { Direction, Place, Route } from "../utils/types";
@@ -19,6 +20,7 @@ const Index: NextPage<IndexProps> = ({ routes }) => {
   const [places, setPlaces] = useState<Array<Place>>();
   const [selectedPlace, setSelectedPlace] = useState<string>("");
 
+  const router = useRouter();
   const { colorMode } = useColorMode();
 
   useEffect(() => {
@@ -47,10 +49,11 @@ const Index: NextPage<IndexProps> = ({ routes }) => {
   }, [selectedDirection]);
 
   const handleSubmit = async () => {
-    const res = await axios.get(
-      `https://svc.metrotransit.org/nextripv2/${selectedRoute}/${selectedDirection}/${selectedPlace}`
-    );
-    console.log(res.data);
+    // const res = await axios.get<Schedule>(
+    //   `https://svc.metrotransit.org/nextripv2/${selectedRoute}/${selectedDirection}/${selectedPlace}`
+    // );
+    // console.log(res.data);
+    router.push(`/schedule/${selectedRoute}-${selectedDirection}-${selectedPlace}`);
   };
 
   return (
