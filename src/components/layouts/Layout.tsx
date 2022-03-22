@@ -1,5 +1,6 @@
-import { Container } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import { NextPage } from "next";
+import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
 
 interface LayoutProps {}
@@ -14,7 +15,8 @@ export const Layout: NextPage<LayoutProps> = ({ children }) => {
       maxW="container.sm"
     >
       <Navbar />
-      {children}
+      <Box minH="75vh">{children}</Box>
+      <Footer />
     </Container>
   );
 };

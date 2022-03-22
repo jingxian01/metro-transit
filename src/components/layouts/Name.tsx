@@ -21,7 +21,7 @@ export const Name: NextPage<NameProps> = ({}) => {
       </Text>
       <Text
         as="h3"
-        fontSize={{ base: "sm", md: "2xl" }}
+        fontSize={{ base: "sm", md: "lg" }}
         fontWeight="semibold"
         _hover={{ cursor: "pointer" }}
       >

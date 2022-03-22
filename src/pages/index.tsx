@@ -1,4 +1,4 @@
-import { Button, Select, useColorMode, useColorModeValue, VStack } from "@chakra-ui/react";
+import { Box, Select, Text, useColorMode, VStack } from "@chakra-ui/react";
 import axios from "axios";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
@@ -45,10 +45,9 @@ const Index: NextPage<IndexProps> = ({ routes }) => {
     }
   }, [selectedDirection]);
 
-  // console.log(routes);
   return (
     <Layout>
-      <VStack>
+      <VStack mt={6} spacing={4}>
         <Select
           variant="filled"
           bg={colorMode == "light" ? "#eef2f6" : "#141414"}
