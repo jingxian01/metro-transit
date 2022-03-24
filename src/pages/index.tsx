@@ -52,7 +52,6 @@ const Index: NextPage<IndexProps> = ({ routes }) => {
     const res = await axios.get<Schedule>(
       `https://svc.metrotransit.org/nextripv2/${selectedRoute}/${selectedDirection}/${selectedPlace}`
     );
-    console.log(res.data);
     router.push(`/schedule/${selectedRoute}-${selectedDirection}-${selectedPlace}`);
   };
 

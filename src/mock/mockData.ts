@@ -17,7 +17,7 @@ export const mockData: Schedule = {
     {
       actual: true,
       departure_text: "6 Min",
-      departure_time: 1647924563,
+      departure_time: 1648093310,
       description: "Bloomington / Chicago 56St / Via France",
       direction_id: 1,
       direction_text: "SB",
