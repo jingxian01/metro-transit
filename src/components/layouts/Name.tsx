@@ -15,7 +15,7 @@ export const Name: NextPage<NameProps> = ({}) => {
         fontSize={{ base: "xl", md: "2xl" }}
         fontWeight="bold"
         _hover={{ cursor: "pointer" }}
-        mr={2}
+        mr={1}
       >
         Metro Transit
       </Text>

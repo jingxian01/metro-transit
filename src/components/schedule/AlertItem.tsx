@@ -14,7 +14,7 @@ export const AlertItem: NextPage<AlertItemProps> = ({ alerts }) => {
         return (
           <HStack
             key={`alert-${idx}`}
-            bg={useColorModeValue("red.200", "red.700")}
+            bg={useColorModeValue("red.200", "red.900")}
             p={2}
             mb={{ base: 2, md: 4 }}
             rounded="md"

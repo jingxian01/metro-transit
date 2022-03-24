@@ -9,7 +9,8 @@ interface StopItemProps {
 export const StopItem: NextPage<StopItemProps> = ({ stops }) => {
   return stops[0] && stops[0].description ? (
     <Box
-      p={2}
+      py={2}
+      px={4}
       mb={{ base: 2, md: 4 }}
       fontWeight="semibold"
       bg={useColorModeValue("gray.200", "#141414")}

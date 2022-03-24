@@ -5,7 +5,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Layout } from "../components/layouts/Layout";
-import { Direction, Place, Route } from "../utils/types";
+import { Direction, Place, Route, Schedule } from "../utils/types";
 
 interface IndexProps {
   routes: Array<Route>;
@@ -49,12 +49,11 @@ const Index: NextPage<IndexProps> = ({ routes }) => {
   }, [selectedDirection]);
 
   const handleSubmit = async () => {
-    // const res = await axios.get<Schedule>(
-    //   `https://svc.metrotransit.org/nextripv2/${selectedRoute}/${selectedDirection}/${selectedPlace}`
-    // );
-    // console.log(res.data);
-    // router.push(`/schedule/${selectedRoute}-${selectedDirection}-${selectedPlace}`);
-    //
+    const res = await axios.get<Schedule>(
+      `https://svc.metrotransit.org/nextripv2/${selectedRoute}/${selectedDirection}/${selectedPlace}`
+    );
+    console.log(res.data);
+    router.push(`/schedule/${selectedRoute}-${selectedDirection}-${selectedPlace}`);
   };
 
   return (
