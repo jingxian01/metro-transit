@@ -17,7 +17,6 @@ interface ScheduleProps {
 
 const Schedule: NextPage<ScheduleProps> = ({ schedule, direction }) => {
   const router = useRouter();
-  // const { alerts, stops, departures } = mockData2;
   const { stops, alerts, departures } = schedule;
 
   return (

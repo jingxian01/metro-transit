@@ -6,7 +6,7 @@ interface FooterProps {}
 
 export const Footer: NextPage<FooterProps> = ({}) => {
   return (
-    <Box>
+    <Box mt={8}>
       <Divider />
       <Divider mb="2vh" />
       <Box textAlign="center" fontSize="sm">

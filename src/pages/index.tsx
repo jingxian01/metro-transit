@@ -4,6 +4,7 @@ import axios from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { HowToUse } from "../components/HowToUse";
 import { Layout } from "../components/layouts/Layout";
 import { Direction, Place, Route, Schedule } from "../utils/types";
 
@@ -57,7 +58,8 @@ const Index: NextPage<IndexProps> = ({ routes }) => {
 
   return (
     <Layout>
-      <VStack mt={6} spacing={4}>
+      <VStack mt={4} spacing={4}>
+        <HowToUse />
         <Box w="100%">
           <Text px={2} fontWeight="semibold">
             Route

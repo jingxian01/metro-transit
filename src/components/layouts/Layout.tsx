@@ -15,7 +15,7 @@ export const Layout: NextPage<LayoutProps> = ({ children }) => {
       maxW="container.sm"
     >
       <Navbar />
-      <Box minH="75vh">{children}</Box>
+      <Box minH="73vh">{children}</Box>
       <Footer />
     </Container>
   );
