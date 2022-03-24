@@ -1,10 +1,16 @@
 import { NextPage } from "next";
 import { Box, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 interface NameProps {}
 
 export const Name: NextPage<NameProps> = ({}) => {
   const blue = useColorModeValue("blue.500", "blue.800");
+  const router = useRouter();
+
+  const clickHandler = () => {
+    router.push("/");
+  };
 
   return (
     <Flex direction={{ base: "column", md: "row" }} alignItems="baseline">
@@ -15,7 +21,8 @@ export const Name: NextPage<NameProps> = ({}) => {
         fontSize={{ base: "xl", md: "2xl" }}
         fontWeight="bold"
         _hover={{ cursor: "pointer" }}
-        mr={1}
+        onClick={clickHandler}
+        mr={2}
       >
         Metro Transit
       </Text>
@@ -24,6 +31,7 @@ export const Name: NextPage<NameProps> = ({}) => {
         fontSize={{ base: "sm", md: "lg" }}
         fontWeight="semibold"
         _hover={{ cursor: "pointer" }}
+        onClick={clickHandler}
       >
         Real Time Schedule
       </Text>

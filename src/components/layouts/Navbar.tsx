@@ -1,8 +1,8 @@
-import { Box, Flex, HStack, IconButton, Link } from "@chakra-ui/react";
+import { Flex, HStack, IconButton, Link } from "@chakra-ui/react";
 import { NextPage } from "next";
+import { FaGithub } from "react-icons/fa";
 import { Name } from "./Name";
 import { ThemeToggleButton } from "./ThemeToggleButton";
-import { FaGithub } from "react-icons/fa";
 
 interface NavbarProps {}
 

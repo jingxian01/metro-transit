@@ -1,5 +1,4 @@
-import { CalendarIcon } from "@chakra-ui/icons";
-import { Box, Text, Divider, Link, Icon } from "@chakra-ui/react";
+import { Box, Divider, Link, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
 
 interface FooterProps {}
