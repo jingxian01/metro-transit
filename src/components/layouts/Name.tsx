@@ -1,5 +1,5 @@
+import { Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import { NextPage } from "next";
-import { Box, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 interface NameProps {}
