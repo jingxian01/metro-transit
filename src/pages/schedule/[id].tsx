@@ -7,15 +7,13 @@ import { Layout } from "../../components/layouts/Layout";
 import { AlertItem } from "../../components/schedule/AlertItem";
 import { DepartureItem } from "../../components/schedule/DepartureItem";
 import { StopItem } from "../../components/schedule/StopItem";
-import { mockDirection } from "../../mock/mockData";
-import { Direction, Schedule as ScheduleType } from "../../utils/types";
+import { Schedule as ScheduleType } from "../../utils/types";
 
 interface ScheduleProps {
   schedule: ScheduleType;
-  direction: Direction;
 }
 
-const Schedule: NextPage<ScheduleProps> = ({ schedule, direction }) => {
+const Schedule: NextPage<ScheduleProps> = ({ schedule }) => {
   const router = useRouter();
   const { stops, alerts, departures } = schedule;
 
@@ -23,7 +21,7 @@ const Schedule: NextPage<ScheduleProps> = ({ schedule, direction }) => {
     <Layout>
       <StopItem stops={stops} />
       <AlertItem alerts={alerts}></AlertItem>
-      <DepartureItem departures={departures} direction={mockDirection} />
+      <DepartureItem departures={departures} />
       <Button
         leftIcon={<ChevronLeftIcon />}
         onClick={() => {

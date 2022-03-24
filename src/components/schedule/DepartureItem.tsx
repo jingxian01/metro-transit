@@ -1,11 +1,10 @@
 import { Badge, Box, Flex, HStack, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { unixToFormatDateTime } from "../../utils/date";
-import { Departure, Direction } from "../../utils/types";
+import { Departure } from "../../utils/types";
 
 interface DepartureItemProps {
   departures: Array<Departure>;
-  direction: Direction;
 }
 
 export const DepartureItem: NextPage<DepartureItemProps> = ({ departures }) => {
