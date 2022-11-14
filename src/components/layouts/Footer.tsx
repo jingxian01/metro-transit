@@ -11,7 +11,7 @@ export const Footer: NextPage<FooterProps> = ({}) => {
       <Box textAlign="center" fontSize="sm">
         <Text textAlign="center" mb={2} alignItems="center">
           Page built by Jingxian Chai.{" "}
-          <Link href="https://jingxiancodes.xyz" target="_blank" color="blue.400">
+          <Link href="https://jxian.dev" target="_blank" color="blue.400">
             website
           </Link>
         </Text>
